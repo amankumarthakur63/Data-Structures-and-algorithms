@@ -1,5 +1,6 @@
 package List;
 
+
 public class SinglyLinkedList {
 
     private ListNode head;
@@ -68,6 +69,115 @@ public class SinglyLinkedList {
             previous.next = newNode;
         }
     }
+
+    public void insertEnd (int data) {
+        ListNode newNode = new ListNode(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        ListNode current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = newNode;
+    }
+
+    public ListNode deleteFirst () {
+        if (head == null) {
+            return null;
+        }
+        ListNode temp = head;
+        head = head.next;
+        temp.next = null;
+        return temp;
+    }
+
+    public ListNode deleteAtAnyPosition (int position) {
+        if (length() < position) {
+            throw new IllegalArgumentException("Invalid position");
+        }
+        if (position < 0) {
+            throw new IllegalArgumentException("Position never be Negative");
+        }
+        if (position == 1) {
+            ListNode temp = head;
+            head.next = head;
+            temp.next = null;
+            return temp;
+        }
+        ListNode previous = head;
+        int count = 0;
+        while (count < position -1) {
+            count++;
+            previous = previous.next;
+        }
+        ListNode current = previous.next;
+        previous.next = current.next;
+        return current;
+    }
+
+    public ListNode deleteLast () {
+        if (head == null) {
+            return null;
+        }
+        if (head.next == null) {
+            return head;
+        }
+        ListNode current = head;
+        ListNode previous = null;
+        while (current.next != null) {
+            previous = current;
+            current = current.next;
+        }
+        previous.next = null;
+        return current;
+    }
+
+    public boolean find (ListNode head, int searchKey) {
+        if (head == null) {
+            return false;
+        }
+        ListNode current = head;
+        while (current != null) {
+            if (current.data == searchKey) {
+                return true;
+            }
+                current = current.next;
+        }
+        return false;
+    }
+
+    public ListNode reverse (ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        ListNode current = head;
+        ListNode previous = null;
+        ListNode next = null;
+
+        while (current != null) {
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+        return previous;
+    }
+
+    public ListNode getMiddleNode () {
+        if (head == null) {
+            return null;
+        }
+        ListNode slowPtr = head;
+        ListNode fastPtr = head;
+
+        while (slowPtr!= null && fastPtr.next != null) {
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+        }
+        return slowPtr;
+    }
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.insertFirst(5);
@@ -75,17 +185,44 @@ public class SinglyLinkedList {
         sll.insertFirst(3);
         sll.insertFirst(2);
         sll.insertFirst(1);
+
         sll.display();
 
         System.out.println(sll.length());
 
-        sll.insertAtAnyPosition(5,2);
-        sll.display();
-        System.out.println(sll.length());
+//        sll.insertAtAnyPosition(5,2);
+//        sll.display();
+//        System.out.println(sll.length());
+//
+//        sll.insertAtAnyPosition(10,1);
+//        sll.display();
+//        System.out.println(sll.length());
+//
+//        sll.insertEnd(0);
+//        sll.display();
+//        System.out.println(sll.length());
 
-        sll.insertAtAnyPosition(10,1);
-        sll.display();
-        System.out.println(sll.length());
+//        sll.deleteFirst();
+//        sll.display();
+//        sll.length();
+
+//        if (sll.find(sll.head, 3)) {
+//            System.out.println("Search Key is found");
+//        } else {
+//            System.out.println("Search Key is not found");
+//        }
+//
+//        sll.deleteAtAnyPosition(3);
+//        sll.display();
+//
+//        sll.deleteLast();
+//        sll.display();
+
+//        sll.reverse(sll.head);
+//        sll.display();
+
+       ListNode middleNode = sll.getMiddleNode();
+        System.out.println("Middle Node is " + middleNode.data);
 
     }
 }
