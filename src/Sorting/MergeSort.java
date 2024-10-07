@@ -41,6 +41,7 @@ public class MergeSort {
         }
         return mix;
     }
+
     public static void main(String[] args) {
         int[] arr = {3, 6, 2, 4, 8, 1};
         System.out.println(Arrays.toString(Merge(arr)));
