@@ -20,11 +20,11 @@ public class AdjMatrixGraph {
 
     public String toString () {
         StringBuilder sb = new StringBuilder();
-        sb.append(V + "vertices" + E + "Edges" + "\n");
+        sb.append(V + " vertices" + ", " + E + " Edges" + "\n");
         for (int v = 0; v < V; v++) {
-            sb.append (v + ":");
+            sb.append (v + ": ");
             for (int w : adjMatrix[v]){
-                sb.append (w + ":");
+                sb.append (w + " ");
             }
             sb.append("\n");
         }
