@@ -172,7 +172,7 @@ public class SinglyLinkedList {
         ListNode slowPtr = head;
         ListNode fastPtr = head;
 
-        while (slowPtr!= null && fastPtr.next != null) {
+        while (fastPtr!= null && fastPtr.next != null) {
             slowPtr = slowPtr.next;
             fastPtr = fastPtr.next.next;
         }
@@ -202,13 +202,63 @@ public class SinglyLinkedList {
         }
         return mainRef;
     }
+
+    public ListNode ContainLoop () {
+        ListNode slowPtr = head;
+        ListNode fastPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null) {
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+            if (fastPtr == slowPtr) {
+                return getStartingNode (slowPtr);
+        }
+        }
+        return null;
+    }
+
+    private ListNode getStartingNode (ListNode slowPtr) {
+        ListNode temp = head;
+        while (temp != slowPtr) {
+            temp = temp.next;
+            slowPtr = slowPtr.next;
+        }
+        return temp;
+    }
+
+    public void removeLoop () {
+        ListNode slowPtr = head;
+        ListNode fastPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null) {
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+            if (fastPtr == slowPtr) {
+                getRemoveValue(slowPtr);
+                return;
+            }
+        }
+    }
+
+    private void getRemoveValue (ListNode slowPtr) {
+        ListNode temp = head;
+
+        while (temp.next != slowPtr.next) {
+            temp = temp.next;
+            slowPtr = slowPtr.next;
+        }
+        slowPtr.next = null;
+    }
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
+        sll.insertFirst(0);
+        sll.insertFirst(6);
         sll.insertFirst(5);
         sll.insertFirst(4);
         sll.insertFirst(3);
         sll.insertFirst(2);
         sll.insertFirst(1);
+        sll.insertFirst(0);
 
         sll.display();
 
