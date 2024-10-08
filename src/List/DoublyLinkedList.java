@@ -49,14 +49,48 @@ public class DoublyLinkedList {
         }
         ListNode temp = tail;
         while (temp != null) {
-            System.out.print(tail.data + " --> ");
+            System.out.print(temp.data + " --> ");
             temp = temp.previous;
         }
         System.out.println("null");
     }
 
+    public void insertFirst (int data) {
+        ListNode newNode = new ListNode(data);
+        if (isEmpty()) {
+            tail = newNode;
+        } else {
+            head.previous = newNode;
+        }
+        newNode.next = head;
+        head = newNode;
+        length++;
+    }
+
+    public void insertEnd (int data) {
+        ListNode newNode = new ListNode(data);
+        if (isEmpty()) {
+            head = newNode;
+        } else {
+            tail.previous = newNode;
+        }
+        newNode.next = tail;
+        tail = newNode;
+        length++;
+    }
+
     public static void main(String[] args) {
         DoublyLinkedList dll = new DoublyLinkedList();
+//        dll.insertFirst(1);
+//        dll.insertFirst(2);
+//        dll.insertFirst(4);
+
+        dll.insertEnd(1);
+        dll.insertEnd(2);
+        dll.insertEnd(3);
+        dll.displayForward();
+        //dll.displayBackward();
+
 
     }
 }
