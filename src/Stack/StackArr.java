@@ -32,11 +32,38 @@ public class StackArr {
         top++;
         arr[top] = data;
     }
+
+    public int pop () {
+        if (isEmpty()) {
+            throw new RuntimeException("Stack is empty !!!");
+        }
+        int result = arr[top];
+        top--;
+        return result;
+    }
+
+    public int peek () {
+        if (isEmpty()) {
+            throw new RuntimeException("Stack is empty !!!");
+        }
+        return arr[top];
+    }
+
+
     public static void main(String[] args) {
         StackArr stack = new StackArr(3);
         stack.push(10);
         stack.push(15);
         stack.push(20);
+        System.out.println(stack.peek());
 
+        stack.pop();
+        System.out.println(stack.peek());
+
+        stack.pop();
+        System.out.println(stack.peek());
+
+        stack.pop();
+        System.out.println(stack.peek());
     }
 }
