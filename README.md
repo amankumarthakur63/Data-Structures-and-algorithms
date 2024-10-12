@@ -1,1 +1,1 @@
-This is the best Data Structure and Algorithms in java.
+This is the best Data Structure and Algorithms in java for beginners to advance. It will also help you to get knowledge and approach about the leetcode type questions that will help you to know about how to tackles the leetcode problem.
