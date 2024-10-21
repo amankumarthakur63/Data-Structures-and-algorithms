@@ -1,5 +1,7 @@
 package BinarySearchTree;
 
+import java.util.Stack;
+
 public class BinarySearch {
     private TreeNode root;
 
@@ -31,22 +33,67 @@ public class BinarySearch {
         third.right = seventh;
     }
 
+// Recursive way to find the preOrder
+
+
+//    public void preOrder (TreeNode root) {
+//        if (root == null) {
+//            return;
+//        }
+//        System.out.print(root.data + " ");
+//        preOrder(root.left);
+//        preOrder(root.right);
+//    }
+
     public void preOrder (TreeNode root) {
         if (root == null) {
             return;
         }
-        System.out.print(root.data + " ");
-        preOrder(root.left);
-        preOrder(root.right);
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push (root);
+
+        while (!stack.isEmpty()) {
+            TreeNode temp = stack.pop();
+            System.out.print(temp.data + " ");
+            if (temp.right != null) {
+                stack.push(temp.right);
+            }
+            if (temp.left != null) {
+                stack.push(temp.left);
+            }
+        }
     }
+
+    // recursive way to find the inOrder
+
+
+//    public void inOrder (TreeNode root) {
+//        if (root == null) {
+//            return;
+//        }
+//        inOrder(root.left);
+//        System.out.print(root.data + " ");
+//        inOrder(root.right);
+//    }
 
     public void inOrder (TreeNode root) {
         if (root == null) {
             return;
         }
-        inOrder(root.left);
-        System.out.print(root.data + " ");
-        inOrder(root.right);
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode temp = root;
+
+        while (!stack.isEmpty() || temp != null) {
+            if (temp != null) {
+                stack.push(temp);
+                temp = temp.left;
+            } else {
+                temp = stack.pop();
+                System.out.print(temp.data + " ");
+                temp = temp.right;
+            }
+        }
     }
 
     public void postOrder (TreeNode root) {
@@ -62,10 +109,10 @@ public class BinarySearch {
 //        bs.createBinaryTree();
 //        bs.preOrder(bs.root);
 
-//        bs.createBinaryTree();
-//        bs.inOrder(bs.root);
-
         bs.createBinaryTree();
-        bs.postOrder(bs.root);
+        bs.inOrder(bs.root);
+
+//        bs.createBinaryTree();
+//        bs.postOrder(bs.root);
     }
 }
