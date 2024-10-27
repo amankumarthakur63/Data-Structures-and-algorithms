@@ -104,6 +104,28 @@ public class BinarySearch {
         postOrder(root.right);
         System.out.print(root.data + " ");
     }
+
+    public int findMax () {
+        return findMax(root);
+    }
+
+    public int findMax (TreeNode root) {
+        if (root == null) {
+            return Integer.MIN_VALUE;
+        }
+        int result = root.data;
+        int left = findMax(root.left);
+        int right = findMax(root.right);
+
+        if (left > result) {
+            result = left;
+        }
+
+        if (right > result) {
+            result = right;
+        }
+        return result;
+    }
     public static void main(String[] args) {
         BinarySearch bs = new BinarySearch();
 //        bs.createBinaryTree();
@@ -111,6 +133,9 @@ public class BinarySearch {
 
         bs.createBinaryTree();
         bs.inOrder(bs.root);
+        System.out.println();
+
+        System.out.println(bs.findMax(bs.root));
 
 //        bs.createBinaryTree();
 //        bs.postOrder(bs.root);
