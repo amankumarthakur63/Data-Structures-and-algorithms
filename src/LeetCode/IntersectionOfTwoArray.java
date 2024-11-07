@@ -5,7 +5,7 @@ import java.util.HashSet;
 
 public class IntersectionOfTwoArray {
 
-    class Solution {
+
         public int[] intersection(int[] nums1, int[] nums2) {
             HashSet<Integer> set = new HashSet<>();
             for(int num:nums1){
@@ -24,7 +24,7 @@ public class IntersectionOfTwoArray {
             }
             return res;
         }
-    }
+
 
     public static void main(String[] args) {
 
